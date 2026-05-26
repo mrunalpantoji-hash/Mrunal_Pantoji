@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mrunal Pantoji</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#1B3A5C;
+    --teal:#007A8A;
+    --teal-light:#E1F5EE;
+    --teal-mid:#5DCAA5;
+    --navy-light:#E8EFF6;
+    --cream:#FAFAF8;
+    --text:#1A1A2E;
+    --muted:#5A6070;
+    --border:#E0E5EC;
+    --white:#FFFFFF;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,248,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .nav-logo{font-family:'DM Serif Display',serif;font-size:1.35rem;color:var(--navy);letter-spacing:-0.02em}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{font-size:0.85rem;color:var(--muted);text-decoration:none;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:color .2s}
+  .nav-links a:hover{color:var(--teal)}
+
+  /* HERO */
+  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:100px 5vw 60px;gap:4rem;max-width:1200px;margin:0 auto}
+  .hero-left h1{font-family:'DM Serif Display',serif;font-size:clamp(2.8rem,5vw,4.2rem);line-height:1.1;color:var(--navy);letter-spacing:-0.03em;margin-bottom:1.2rem}
+  .hero-left h1 em{font-style:italic;color:var(--teal)}
+  .hero-tag{display:inline-block;background:var(--teal-light);color:var(--teal);font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:1.2rem}
+  .hero-desc{font-size:1.05rem;color:var(--muted);max-width:480px;line-height:1.7;margin-bottom:2rem}
+  .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn-primary{background:var(--navy);color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.9rem;transition:background .2s,transform .15s}
+  .btn-primary:hover{background:var(--teal);transform:translateY(-1px)}
+  .btn-outline{border:1.5px solid var(--navy);color:var(--navy);padding:11px 24px;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.9rem;transition:all .2s}
+  .btn-outline:hover{background:var(--navy);color:#fff}
+
+  .hero-right{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .stat-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.2rem;text-align:center}
+  .stat-card .num{font-family:'DM Serif Display',serif;font-size:2.4rem;color:var(--navy);line-height:1}
+  .stat-card .num span{font-size:1.4rem;color:var(--teal)}
+  .stat-card .label{font-size:0.78rem;color:var(--muted);margin-top:6px;font-weight:500;letter-spacing:0.02em}
+  .stat-card.accent{background:var(--navy);border-color:var(--navy)}
+  .stat-card.accent .num{color:#fff}
+  .stat-card.accent .label{color:rgba(255,255,255,0.65)}
+
+  /* SECTIONS */
+  section{padding:90px 5vw;max-width:1200px;margin:0 auto}
+  .section-tag{font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:0.6rem}
+  .section-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);color:var(--navy);line-height:1.15;letter-spacing:-0.02em;margin-bottom:0.5rem}
+  .section-title em{font-style:italic;color:var(--teal)}
+  .section-sub{font-size:1rem;color:var(--muted);max-width:520px;margin-bottom:3rem}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:4rem;align-items:start}
+  .about-body p{font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:1rem}
+  .about-body strong{color:var(--text);font-weight:600}
+  .about-sidebar{display:flex;flex-direction:column;gap:1rem}
+  .pill-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:0.5rem}
+  .pill{background:var(--navy-light);color:var(--navy);font-size:0.78rem;font-weight:500;padding:5px 12px;border-radius:20px}
+  .sidebar-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.2rem}
+  .sidebar-card h4{font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--teal);margin-bottom:0.8rem}
+
+  /* EXPERIENCE */
+  .exp-list{display:flex;flex-direction:column;gap:2rem}
+  .exp-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:2rem;display:grid;grid-template-columns:140px 1fr;gap:2rem;transition:box-shadow .2s,transform .2s}
+  .exp-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.07);transform:translateY(-2px)}
+  .exp-meta .date{font-size:0.78rem;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:0.05em}
+  .exp-meta .loc{font-size:0.8rem;color:var(--muted);margin-top:4px}
+  .exp-meta .company-badge{display:inline-block;background:var(--navy-light);color:var(--navy);font-size:0.72rem;font-weight:600;padding:3px 10px;border-radius:20px;margin-top:10px}
+  .exp-content h3{font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:0.8rem}
+  .exp-content ul{list-style:none;display:flex;flex-direction:column;gap:0.55rem}
+  .exp-content li{font-size:0.92rem;color:var(--muted);padding-left:1.2rem;position:relative;line-height:1.6}
+  .exp-content li::before{content:"→";position:absolute;left:0;color:var(--teal);font-size:0.85rem}
+  .exp-content li strong{color:var(--text);font-weight:600}
+
+  /* PROJECTS */
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+  .proj-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:1.8rem;display:flex;flex-direction:column;gap:1rem;transition:all .2s}
+  .proj-card:hover{box-shadow:0 8px 28px rgba(0,0,0,0.08);transform:translateY(-2px)}
+  .proj-num{font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--teal);font-weight:400}
+  .proj-label{font-size:0.72rem;font-weight:600;background:var(--teal-light);color:var(--teal);padding:3px 10px;border-radius:20px;display:inline-block;letter-spacing:0.04em}
+  .proj-card h3{font-size:1.1rem;font-weight:600;color:var(--navy);line-height:1.3}
+  .proj-card p{font-size:0.88rem;color:var(--muted);line-height:1.65;flex:1}
+  .proj-impact{font-size:0.8rem;background:var(--navy-light);color:var(--navy);padding:6px 12px;border-radius:8px;font-weight:500;border-left:3px solid var(--teal)}
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .skill-block{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.5rem}
+  .skill-block h4{font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--navy);margin-bottom:1rem;padding-bottom:0.7rem;border-bottom:2px solid var(--teal-light)}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:7px}
+  .skill-tag{font-size:0.78rem;color:var(--muted);background:var(--cream);border:1px solid var(--border);padding:4px 11px;border-radius:20px}
+
+  /* LEADERSHIP */
+  .lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+  .lead-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start}
+  .lead-icon{width:40px;height:40px;min-width:40px;border-radius:10px;background:var(--navy-light);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+  .lead-card h4{font-size:0.95rem;font-weight:600;color:var(--navy);margin-bottom:0.35rem}
+  .lead-card p{font-size:0.83rem;color:var(--muted);line-height:1.55}
+
+  /* EDUCATION */
+  .edu-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+  .edu-card h3{font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:0.4rem}
+  .edu-card .inst{font-size:0.9rem;color:var(--teal);margin-bottom:0.6rem}
+  .edu-card .year{font-size:0.82rem;color:var(--muted)}
+  .edu-stats{display:flex;gap:1.2rem}
+  .edu-stat{text-align:center}
+  .edu-stat .val{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--navy);line-height:1}
+  .edu-stat .lab{font-size:0.72rem;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:0.04em;font-weight:500}
+
+  /* CERTS */
+  .certs-row{display:flex;flex-wrap:wrap;gap:1rem}
+  .cert-pill{background:var(--white);border:1px solid var(--border);border-radius:40px;padding:10px 20px;font-size:0.85rem;font-weight:500;color:var(--navy);display:flex;align-items:center;gap:8px}
+  .cert-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0}
+
+  /* CONTACT */
+  .contact-section{background:var(--navy);border-radius:24px;padding:4rem 3rem;text-align:center;max-width:1200px;margin:0 5vw 80px}
+  .contact-section h2{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3rem);color:#fff;margin-bottom:0.6rem;letter-spacing:-0.02em}
+  .contact-section h2 em{color:var(--teal-mid);font-style:italic}
+  .contact-section p{color:rgba(255,255,255,0.65);margin-bottom:2rem;font-size:1rem}
+  .contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .contact-links a{padding:11px 24px;border-radius:8px;font-weight:500;font-size:0.9rem;text-decoration:none;transition:all .2s}
+  .contact-links .c-white{background:#fff;color:var(--navy)}
+  .contact-links .c-white:hover{background:var(--teal-light);color:var(--teal)}
+  .contact-links .c-border{border:1.5px solid rgba(255,255,255,0.35);color:#fff}
+  .contact-links .c-border:hover{background:rgba(255,255,255,0.1)}
+
+  footer{text-align:center;padding:2rem 5vw;font-size:0.8rem;color:var(--muted);border-top:1px solid var(--border)}
+
+  /* DIVIDER */
+  .full-section{max-width:none;padding-left:5vw;padding-right:5vw}
+  .full-section > *{max-width:1200px;margin-left:auto;margin-right:auto}
+
+  /* ANIMATIONS */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  .hero-left{animation:fadeUp .7s ease both}
+  .hero-right{animation:fadeUp .7s .15s ease both}
+
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;padding-top:90px;gap:2rem}
+    .about-grid{grid-template-columns:1fr}
+    .exp-card{grid-template-columns:1fr}
+    .skills-grid{grid-template-columns:1fr 1fr}
+    .lead-grid{grid-template-columns:1fr}
+    .edu-card{grid-template-columns:1fr}
+  }
+  @media(max-width:600px){
+    .skills-grid{grid-template-columns:1fr}
+    .hero-right{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">MP</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Graduate · Project & Programme Management</div>
+    <h1>Hey, I'm<br/>Mrunal <em>Pantoji.</em></h1>
+    <p class="hero-desc">Final-year engineering student from Aurangabad turning complex data into decisions that matter. I've delivered cross-functional projects at <strong>Endress+Hauser</strong> and <strong>Airport Authority of India</strong> — and built my own AI research tool from concept to deployment.</p>
+    <div class="hero-ctas">
+      <a href="#experience" class="btn-primary">See my work</a>
+      <a href="mailto:mrunalpantoji@gmail.com" class="btn-outline">Let's talk →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-card accent">
+      <div class="num">8.56<span>/10</span></div>
+      <div class="label">CGPA · Top 15% of Cohort</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">3<span>+</span></div>
+      <div class="label">Internships Completed</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">30<span>+</span></div>
+      <div class="label">Team Members Led</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">1<span>st</span></div>
+      <div class="label">Ideathon 7.0 Winner</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-tag">A bit about me</div>
+      <h2 class="section-title">I think like a <em>consultant.</em></h2>
+      <div class="about-body">
+        <p>I'm pursuing B.Tech in Electronics & Telecommunication Engineering at <strong>Govt. College of Engineering, Aurangabad</strong> — but my real passion has always been in strategy, project delivery, and making complex things simple.</p>
+        <p>Over the past year, I've done internships where I managed workstreams, built competitive benchmarking reports, and delivered structured insights to senior teams. At <strong>Endress+Hauser</strong>, I benchmarked 15+ products and identified 3 growth opportunity segments that were adopted by the cross-functional team. At <strong>Airport Authority of India</strong>, I documented workflows for safety-critical infrastructure serving 100,000+ daily passengers.</p>
+        <p>My most interesting project? I built an <strong>AI-powered company research tool</strong> — ideation, UX, deployment — entirely through structured prompt engineering. End-to-end project ownership with zero development budget, delivering a ~70% reduction in research time.</p>
+        <p>Outside work, I've led a <strong>30+ member student council team</strong>, won Ideathon 7.0, and competed at the state level in drama. I know how to communicate, persuade, and lead.</p>
+      </div>
+    </div>
+    <div class="about-sidebar">
+      <div class="sidebar-card">
+        <h4>📍 Location</h4>
+        <p style="font-size:0.9rem;color:var(--muted)">Aurangabad, Maharashtra</p>
+      </div>
+      <div class="sidebar-card">
+        <h4>Focus Areas</h4>
+        <div class="pill-group">
+          <span class="pill">Programme Delivery</span>
+          <span class="pill">Project Management</span>
+          <span class="pill">Stakeholder Reporting</span>
+          <span class="pill">Competitive Analysis</span>
+          <span class="pill">Market Research</span>
+          <span class="pill">AI & Prompt Engineering</span>
+        </div>
+      </div>
+      <div class="sidebar-card">
+        <h4>Currently</h4>
+        <p style="font-size:0.88rem;color:var(--muted);line-height:1.6">Marketing & Product Analysis Intern at <strong style="color:var(--navy)">Endress+Hauser India</strong> · Jan 2026 – Present</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-tag">Where I've worked</div>
+  <h2 class="section-title">Experience</h2>
+  <p class="section-sub">Hands-on delivery across industrial, infrastructure, and technology environments.</p>
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div class="exp-meta">
+        <div class="date">Jan 2026 –<br/>Present</div>
+        <div class="loc">Aurangabad, India</div>
+        <div class="company-badge">Endress+Hauser</div>
+      </div>
+      <div class="exp-content">
+        <h3>Marketing & Product Analysis Intern</h3>
+        <ul>
+          <li>Benchmarked <strong>15+ industrial instrumentation products</strong>, producing structured market positioning reports used directly by sales and strategic planning teams</li>
+          <li>Identified <strong>3 growth opportunity segments</strong> through competitor portfolio analysis; findings adopted cross-functionally to realign product narratives with market needs</li>
+          <li>Coordinated across sales and technical departments to deliver consolidated reporting within tight deadlines — directly analogous to multi-stakeholder programme environments</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-meta">
+        <div class="date">Jun 2025</div>
+        <div class="loc">Aurangabad</div>
+        <div class="company-badge">AAI</div>
+      </div>
+      <div class="exp-content">
+        <h3>Research & Operations Intern · Airport Authority of India</h3>
+        <ul>
+          <li>Documented fault resolution workflows for safety-critical communication infrastructure serving <strong>100,000+ daily passengers</strong>, contributing to zero-downtime operational reporting</li>
+          <li>Applied structured analytical methods to map process dependencies and identify procedural gaps, reducing documentation ambiguity for safety operations teams</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-meta">
+        <div class="date">Jan – Mar<br/>2025</div>
+        <div class="loc">Remote</div>
+        <div class="company-badge">Acmegrade</div>
+      </div>
+      <div class="exp-content">
+        <h3>Product Research Intern – IoT Solutions</h3>
+        <ul>
+          <li>Researched IoT device-to-cloud pipeline architectures; delivered feature gap analysis informing product development roadmap decisions</li>
+          <li>Translated complex technical specifications into stakeholder-ready reports — making technical complexity legible to non-technical readers</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-tag">Things I've built & won</div>
+  <h2 class="section-title">Projects</h2>
+  <p class="section-sub">End-to-end ownership from concept to delivery — the kind of accountability that matters in programme management.</p>
+  <div class="projects-grid">
+
+    <div class="proj-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="proj-num">01 — Flagship</span>
+        <span class="proj-label">No-Code · AI Product</span>
+      </div>
+      <h3>AI-Powered Company Research Tool</h3>
+      <p>Designed and deployed a web tool that automates competitive intelligence gathering. Ran the full project lifecycle — ideation, UX flow, testing, deployment — independently with zero development budget.</p>
+      <div class="proj-impact">~70% reduction in research time · Full lifecycle ownership</div>
+    </div>
+
+    <div class="proj-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="proj-num">02 — Achievement</span>
+        <span class="proj-label">Business Innovation</span>
+      </div>
+      <h3>Ideathon 7.0 — 1st Place Winner</h3>
+      <p>Led team to first-place finish in a tech-driven business innovation competition. Developed and presented a structured business case combining market analysis with a realistic go-to-market strategy — under competitive pressure and time constraints.</p>
+      <div class="proj-impact">Winner · Structured business case · Under time pressure</div>
+    </div>
+
+    <div class="proj-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="proj-num">03 — Research</span>
+        <span class="proj-label">Academic · Technical</span>
+      </div>
+      <h3>IoT Sensor Market Landscape</h3>
+      <p>Mapped the IoT sensor market — benchmarked products, evaluated performance data, and turned raw technical specifications into structured deployment decision reports for non-technical stakeholders.</p>
+      <div class="proj-impact">Technical complexity → stakeholder-ready outputs</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag">What I'm good at</div>
+  <h2 class="section-title">Skills & Tools</h2>
+  <p class="section-sub">Built through internships, certifications, and real project delivery.</p>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h4>Project & Programme</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Planning & Scheduling</span>
+        <span class="skill-tag">Risk Tracking</span>
+        <span class="skill-tag">Business Case Delivery</span>
+        <span class="skill-tag">Stakeholder Reporting</span>
+        <span class="skill-tag">Agile Basics</span>
+        <span class="skill-tag">Google PM Framework</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h4>Analysis & Reporting</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Competitive Analysis</span>
+        <span class="skill-tag">Market Research</span>
+        <span class="skill-tag">Feature Gap Analysis</span>
+        <span class="skill-tag">Technical Documentation</span>
+        <span class="skill-tag">MS Excel (Advanced)</span>
+        <span class="skill-tag">Power BI</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h4>Tools & Collaboration</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">AI Prompt Engineering</span>
+        <span class="skill-tag">SAP Fundamentals</span>
+        <span class="skill-tag">Cross-functional Teams</span>
+        <span class="skill-tag">Public Speaking</span>
+        <span class="skill-tag">Client Communication</span>
+        <span class="skill-tag">Structured Problem-Solving</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section>
+  <div class="section-tag">Beyond the desk</div>
+  <h2 class="section-title">Leadership & <em>Achievements</em></h2>
+  <p class="section-sub">Proven ability to manage teams, events, and deliver under pressure.</p>
+  <div class="lead-grid">
+    <div class="lead-card">
+      <div class="lead-icon">🎓</div>
+      <div>
+        <h4>General Secretary — ENTC Student Council</h4>
+        <p>Led the Electronics & Telecom student council at GCE Aurangabad. Organised <strong>10+ technical workshops</strong>, managed a team of <strong>30+ members</strong>, and delivered every event on schedule — not just planned.</p>
+      </div>
+    </div>
+    <div class="lead-card">
+      <div class="lead-icon">🏆</div>
+      <div>
+        <h4>Winner — Ideathon 7.0</h4>
+        <p>Won a competitive tech-driven business innovation challenge. The winning idea combined market research with a structured business case — demonstrating end-to-end analytical thinking under pressure.</p>
+      </div>
+    </div>
+    <div class="lead-card">
+      <div class="lead-icon">🚀</div>
+      <div>
+        <h4>Vice President — Entrepreneurship Development Cell</h4>
+        <p>Helped run a startup-focused student body bringing founders, mentors, and students together. Organised pitch events and helped early-stage ideas get from napkin to presentation.</p>
+      </div>
+    </div>
+    <div class="lead-card">
+      <div class="lead-icon">🎭</div>
+      <div>
+        <h4>State-Level Drama Performer</h4>
+        <p>Competed at state level in Firodia Karandak and Purushottam Karandak — two of Maharashtra's most prestigious drama competitions. A reminder that communication is a skill, not just a trait.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section>
+  <div class="section-tag">Where I studied</div>
+  <h2 class="section-title">Education</h2>
+  <div style="display:flex;flex-direction:column;gap:1rem">
+    <div class="edu-card">
+      <div>
+        <h3>B.Tech — Electronics & Telecommunication Engineering</h3>
+        <div class="inst">Govt. College of Engineering, Aurangabad (BAMU)</div>
+        <div class="year">Expected June 2026 · Top 15% of cohort</div>
+      </div>
+      <div class="edu-stats">
+        <div class="edu-stat">
+          <div class="val">8.56</div>
+          <div class="lab">CGPA / 10</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+      <div class="edu-card" style="padding:1.2rem 1.5rem">
+        <div>
+          <h3 style="font-size:0.95rem">HSC · SBES College, Aurangabad</h3>
+          <div class="year">2022</div>
+        </div>
+        <div class="edu-stat"><div class="val" style="font-size:1.4rem">85.5%</div></div>
+      </div>
+      <div class="edu-card" style="padding:1.2rem 1.5rem">
+        <div>
+          <h3 style="font-size:0.95rem">SSC · Sharda Mandir, Aurangabad</h3>
+          <div class="year">2020</div>
+        </div>
+        <div class="edu-stat"><div class="val" style="font-size:1.4rem">94.6%</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section>
+  <div class="section-tag">Credentials</div>
+  <h2 class="section-title">Certifications</h2>
+  <div class="certs-row">
+    <div class="cert-pill"><span class="cert-dot"></span>Google Project Management — Coursera</div>
+    <div class="cert-pill"><span class="cert-dot"></span>SAP Professional Fundamentals</div>
+    <div class="cert-pill"><span class="cert-dot"></span>Cisco Networking: Routing & Switching</div>
+    <div class="cert-pill"><span class="cert-dot"></span>Ethical Hacking — NPTEL</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <h2>I'm open to <em>opportunities.</em></h2>
+  <p>Programme Management · Project Delivery · Consulting · Business Analysis — if it sounds like a fit, let's talk.</p>
+  <div class="contact-links">
+    <a href="mailto:mrunalpantoji@gmail.com" class="c-white">✉ Email me</a>
+    <a href="https://linkedin.com/in/mrunal-pantoji" class="c-border">↗ LinkedIn</a>
+    <a href="tel:9175578035" class="c-border">✆ +91 9175578035</a>
+  </div>
+</div>
+
+<footer>
+  Made with curiosity, caffeine, and a lot of structured thinking ☕ · © 2026 Mrunal Pantoji · Aurangabad, Maharashtra
+</footer>
+
+</body>
+</html>
